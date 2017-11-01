@@ -12,5 +12,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
-    internal abstract fun contributeBTDialogFragment(): ConversationsFragment
+    internal abstract fun contributeConversationsFragment(): ConversationsFragment
 }
