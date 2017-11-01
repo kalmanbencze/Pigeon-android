@@ -1,0 +1,122 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+repositories {
+    google()
+    jcenter()
+    maven {
+        url 'https://maven.fabric.io/public'
+    }
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.android.messaging"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    def config = rootProject.ext.config
+    def ext = rootProject.ext
+
+
+    implementation "com.android.support:support-v4:${ext.supportVersion}"
+    implementation "com.android.support:appcompat-v7:${ext.supportVersion}"
+    implementation "com.android.support:design:${ext.supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${ext.supportVersion}"
+    implementation "com.android.support:cardview-v7:${ext.supportVersion}"
+    implementation "com.android.support:percent:${ext.supportVersion}"
+    implementation "com.android.support:customtabs:${ext.supportVersion}"
+    implementation "com.android.support:support-annotations:${ext.supportVersion}"
+    implementation "com.google.android.gms:play-services-location:${ext.playServicesVersion}"
+    implementation "com.google.android.gms:play-services-auth:${ext.playServicesVersion}"
+    implementation "com.google.firebase:firebase-auth:${ext.firebaseVersion}"
+    implementation("com.google.api-client:google-api-client-android:${ext.googleApiVersion}") { exclude group: 'org.apache.httpcomponents' }
+    implementation "com.facebook.android:facebook-android-sdk:${ext.facebookApiVersion}"
+    implementation "com.github.bumptech.glide:glide:${ext.glideVersion}"
+    implementation "com.pnikosis:materialish-progress:${ext.materialishProgressVersion}"
+    implementation "com.github.paolorotolo:appintro:${ext.appIntroVersion}"
+
+    implementation "com.google.dagger:dagger:${ext.daggerVersion}"
+    implementation "com.google.dagger:dagger-android:${ext.daggerVersion}"
+    implementation "com.google.dagger:dagger-android-support:${ext.daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${ext.daggerVersion}"
+    kapt "com.google.dagger:dagger-android-processor:${ext.daggerVersion}"
+    implementation "android.arch.lifecycle:runtime:${ext.lifecycleVersion}"
+    implementation "android.arch.lifecycle:extensions:${ext.lifecycleExtVersion}"//warning is wrong about new version: alpha9-1
+    kapt "android.arch.lifecycle:compiler:${ext.lifecycleExtVersion}"
+    kapt "com.android.databinding:compiler:3.0.0"
+
+    implementation("org.apache.httpcomponents:httpclient-android:${ext.apacheHttpClientVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }
+    implementation("org.apache.httpcomponents:httpmime:${ext.apacheHttpMimeVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }
+    implementation("oauth.signpost:signpost-commonshttp4:${ext.signpostVersion}") { exclude module: "httpcore" exclude module: "commons-codec" exclude module: "httpclient" }
+    implementation "com.crashlytics.sdk.android:crashlytics:${ext.crashliticsVersion}"
+    implementation "com.crashlytics.sdk.android:crashlytics-ndk:${ext.crashliticsNdkVersion}"
+    implementation 'org.jetbrains:annotations:15.0'
+
+    // Dependencies for development
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakCanaryVersion}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakCanaryVersion}"
+
+    // Dependencies for local unit tests
+    testImplementation "com.android.support:support-annotations:${ext.supportVersion}"
+    testImplementation "org.powermock:powermock-api-mockito:${ext.powermockVersion}"
+    testImplementation "org.powermock:powermock-module-junit4:${ext.powermockVersion}"
+    testImplementation "org.robolectric:robolectric:${ext.robolectricVersion}"
+    testImplementation "junit:junit:${ext.jUnitVersion}"
+    testImplementation "org.mockito:mockito-all:${ext.mockitoVersion}"
+    testImplementation "org.hamcrest:hamcrest-all:${ext.hamcrestVersion}"
+    testImplementation "android.arch.core:core-testing:${ext.lifecycleExtVersion}"
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "com.android.support.test:runner:${ext.runnerVersion}"
+    androidTestImplementation "com.android.support.test:rules:${ext.rulesVersion}"
+
+    // Dependencies for Android unit tests
+    androidTestImplementation "junit:junit:${ext.jUnitVersion}"
+    androidTestImplementation "org.mockito:mockito-all:${ext.mockitoVersion}"
+    androidTestImplementation "com.google.dexmaker:dexmaker:${ext.dexmakerVersion}"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:${ext.dexmakerVersion}"
+
+    // Espresso UI Testing
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${ext.espressoVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${ext.espressoVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${ext.espressoVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-idling-resource:${ext.espressoVersion}"
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation "com.android.support:support-annotations:${ext.supportVersion}"
+    androidTestImplementation "com.android.support:support-v4:${ext.supportVersion}"
+    androidTestImplementation "com.android.support:recyclerview-v7:${ext.supportVersion}"
+    androidTestImplementation "com.android.support:appcompat-v7:${ext.supportVersion}"
+    androidTestImplementation "com.android.support:design:${ext.supportVersion}"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
