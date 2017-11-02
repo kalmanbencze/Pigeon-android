@@ -1,9 +1,9 @@
-package com.android.messaging
+package com.android.messaging.presentation.viewmodel
 
-import javax.inject.Inject
-import javax.inject.Provider
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import javax.inject.Inject
+import javax.inject.Provider
 
 @Suppress("UNCHECKED_CAST")
 /**

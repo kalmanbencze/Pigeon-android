@@ -54,7 +54,7 @@ ext {
 
     // Sdk and tools
     supportVersion = '26.1.0'
-    playServicesVersion = '11.2.0'
+    playServicesVersion = '11.4.2'
 
     //Libraries
     daggerVersion = '2.11'
@@ -75,14 +75,15 @@ ext {
     retrofitVersion = '2.3.0'
     firebaseVersion = playServicesVersion
     googleApiVersion = "1.22.0"
-    facebookApiVersion = "4.19.0"
+    facebookApiVersion = "4.27.0"
     butterknifeVersion = '8.7.0'
     glideVersion = '3.7.0'
     glideTransformationsVersion = '2.0.2'
     appIntroVersion = '4.1.0'
-    lifecycleVersion = '1.0.0'
-    lifecycleExtVersion = '1.0.0-beta1'
-    pagingVersion = '1.0.0-alpha2'
+    lifecycleVersion = '1.0.3'
+    lifecycleExtVersion = '1.0.0-rc1'
+    pagingVersion = '1.0.0-alpha3'
+    roomVersion = '1.0.0-rc1'
 
 
 

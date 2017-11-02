@@ -2,8 +2,8 @@ package com.android.messaging.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.android.messaging.ViewModelFactory
-import com.android.messaging.presentation.conversations.ConversationsViewModel
+import com.android.messaging.presentation.viewmodel.ConversationViewModel
+import com.android.messaging.presentation.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -13,8 +13,8 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ConversationsViewModel::class)
-    abstract fun bindConversationsViewModel(vm: ConversationsViewModel): ViewModel
+    @ViewModelKey(ConversationViewModel::class)
+    abstract fun bindConversationsViewModel(vm: ConversationViewModel): ViewModel
 
 
     @Binds

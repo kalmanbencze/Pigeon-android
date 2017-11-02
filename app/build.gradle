@@ -67,7 +67,10 @@ dependencies {
     implementation "com.google.dagger:dagger-android:${ext.daggerVersion}"
     implementation "com.google.dagger:dagger-android-support:${ext.daggerVersion}"
     implementation "android.arch.lifecycle:runtime:${ext.lifecycleVersion}"
+    implementation "android.arch.paging:runtime:${ext.pagingVersion}"
     implementation "android.arch.lifecycle:extensions:${ext.lifecycleExtVersion}"//warning is wrong about new version: alpha9-1
+    implementation "android.arch.persistence.room:runtime:${ext.roomVersion}"
+    kapt "android.arch.persistence.room:compiler:${ext.roomVersion}"
     kapt "com.google.dagger:dagger-compiler:${ext.daggerVersion}"
     kapt "com.google.dagger:dagger-android-processor:${ext.daggerVersion}"
     kapt "android.arch.lifecycle:compiler:${ext.lifecycleExtVersion}"

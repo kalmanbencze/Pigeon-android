@@ -19,11 +19,8 @@ package com.android.messaging.di
 import dagger.Module
 
 @Module
-internal abstract class ServiceBindingModule//  @ContributesAndroidInjector
-//  abstract CameraHandlerService contributeCameraHandlerService();
-//
+internal abstract class ServiceBindingModule {
+
 //  @ContributesAndroidInjector
-//  abstract UploadJobService contributeUploadJobService();
-//
-//  @ContributesAndroidInjector
-//  abstract RecentClearedService contributeRecentClearedService();
+//  abstract ExampleService contributeExampleService();
+}

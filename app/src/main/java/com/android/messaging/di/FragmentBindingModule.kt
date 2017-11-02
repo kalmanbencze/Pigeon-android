@@ -1,7 +1,7 @@
 package com.android.messaging.di
 
 import com.android.messaging.di.viewmodel.ViewModelModule
-import com.android.messaging.presentation.conversations.ConversationsFragment
+import com.android.messaging.presentation.fragment.ConversationFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,5 +13,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))
-    internal abstract fun contributeConversationsFragment(): ConversationsFragment
+    internal abstract fun contributeConversationsFragment(): ConversationFragment
 }

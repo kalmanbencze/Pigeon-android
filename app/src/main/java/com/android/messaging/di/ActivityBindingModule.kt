@@ -16,7 +16,7 @@
 
 package com.android.messaging.di
 
-import com.android.messaging.MainActivity
+import com.android.messaging.presentation.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
