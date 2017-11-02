@@ -1,7 +1,7 @@
 package com.android.messaging.di
 
-import com.android.messaging.conversations.ConversationsFragment
 import com.android.messaging.di.viewmodel.ViewModelModule
+import com.android.messaging.presentation.conversations.ConversationsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
