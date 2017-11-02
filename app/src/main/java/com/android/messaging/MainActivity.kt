@@ -2,13 +2,22 @@ package com.android.messaging
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.util.Log
 import com.android.messaging.conversations.ConversationsFragment
+import com.android.messaging.data.Preferences
 import com.android.messaging.di.Injectable
-import java.util.prefs.Preferences
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), Injectable {
+class MainActivity : AppCompatActivity(), Injectable, HasSupportFragmentInjector {
+    @Inject
+    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
+        return fragmentInjector
+    }
 
     @Inject
     internal lateinit var prefs: Preferences

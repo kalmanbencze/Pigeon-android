@@ -9,14 +9,14 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ViewModelModule {
+public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
     @ViewModelKey(ConversationsViewModel::class)
-    internal abstract fun bindSettingsViewModel(vm: ConversationsViewModel): ViewModel
+    abstract fun bindConversationsViewModel(vm: ConversationsViewModel): ViewModel
 
 
     @Binds
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

@@ -1,4 +1,4 @@
-package com.android.messaging.databinding
+package com.android.messaging.presentation.databinding
 
 import android.databinding.BindingAdapter
 import android.support.annotation.ColorRes

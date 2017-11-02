@@ -5,6 +5,7 @@ import javax.inject.Provider
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 
+@Suppress("UNCHECKED_CAST")
 /**
  * Responsible for creating the view models while with a lifecycle owner to be used with LiveData
  *
@@ -16,7 +17,7 @@ import android.arch.lifecycle.ViewModelProvider
  * Created by kalmanb on 9/7/17.
  */
 class ViewModelFactory @Inject
-internal constructor(private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>) : ViewModelProvider.Factory {
+internal constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         var creator: Provider<out ViewModel>? = creators[modelClass]

@@ -16,7 +16,7 @@ import javax.inject.Singleton
  * Created by kalman.bencze on 01/11/2017.
  */
 @Module(includes = arrayOf(ViewModelModule::class))
-internal class AppModule {
+class AppModule {
 
     @Provides
     fun provideLifeCycleOwner(): LifecycleOwner {
@@ -45,11 +45,6 @@ internal class AppModule {
     @Provides
     fun provideVersionPreferences(prefs: Preferences): VersionPreferences {
         return prefs
-    }
-
-    companion object {
-
-        private val TAG = "AppModule"
     }
 }
 

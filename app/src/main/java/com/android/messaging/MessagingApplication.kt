@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.app.Service
 import android.databinding.DataBindingUtil
-import com.android.messaging.databinding.DefaultBindingComponent
+import com.android.messaging.presentation.databinding.DefaultBindingComponent
 import com.android.messaging.di.AppInjector
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.DispatchingAndroidInjector
@@ -23,14 +23,6 @@ class MessagingApplication : Application(), HasActivityInjector, HasServiceInjec
     @Inject
     internal lateinit var serviceInjector: DispatchingAndroidInjector<Service>
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
-        return activityInjector
-    }
-
-    override fun serviceInjector(): DispatchingAndroidInjector<Service> {
-        return serviceInjector
-    }
-
     override fun onCreate() {
         super.onCreate()
 
@@ -42,5 +34,13 @@ class MessagingApplication : Application(), HasActivityInjector, HasServiceInjec
         AppInjector.init(this)
         DataBindingUtil.setDefaultComponent(DefaultBindingComponent())
         LeakCanary.install(this)
+    }
+
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
+        return activityInjector
+    }
+
+    override fun serviceInjector(): DispatchingAndroidInjector<Service> {
+        return serviceInjector
     }
 }
