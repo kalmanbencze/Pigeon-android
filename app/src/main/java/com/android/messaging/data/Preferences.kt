@@ -34,10 +34,6 @@ constructor(private val prefs: ApplicationPreferences) : PreferenceTypes, Versio
             return value
         }
 
-    var ffmpegCrashCounter: Int
-        get() = prefs.getIntPreference(PreferenceTypes.K_FFMPEG_CRASH_COUNTER)
-        set(value) = prefs.saveIntPreference(PreferenceTypes.K_FFMPEG_CRASH_COUNTER, value)
-
     override var restartCounter: Int
         get() = prefs.getIntPreference(PreferenceTypes.K_RESTART_COUNTER)
         set(value) = prefs.saveIntPreference(PreferenceTypes.K_RESTART_COUNTER, value)
