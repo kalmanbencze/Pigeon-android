@@ -2,6 +2,7 @@ package com.android.messaging.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.android.messaging.presentation.viewmodel.ContactsViewModel
 import com.android.messaging.presentation.viewmodel.ConversationViewModel
 import com.android.messaging.presentation.viewmodel.ViewModelFactory
 import dagger.Binds
@@ -15,6 +16,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ConversationViewModel::class)
     abstract fun bindConversationsViewModel(vm: ConversationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ContactsViewModel::class)
+    abstract fun bindContactsViewModel(vm: ContactsViewModel): ViewModel
 
 
     @Binds

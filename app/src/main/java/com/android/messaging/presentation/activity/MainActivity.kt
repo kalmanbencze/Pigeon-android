@@ -8,7 +8,7 @@ import android.util.Log
 import com.android.messaging.R
 import com.android.messaging.data.Preferences
 import com.android.messaging.di.Injectable
-import com.android.messaging.presentation.fragment.ConversationFragment
+import com.android.messaging.presentation.fragment.ContactsFragment
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), Injectable, HasSupportFragmentInjector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction().replace(R.id.content_holder, ConversationFragment()).addToBackStack(ConversationFragment.TAG).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.content_holder, ContactsFragment()).addToBackStack(ContactsFragment.TAG).commit()
         Log.d("MainActivity", "onCreate:" + prefs)
 
     }
@@ -36,4 +36,11 @@ class MainActivity : AppCompatActivity(), Injectable, HasSupportFragmentInjector
         super.onNewIntent(intent)
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount <= 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

@@ -84,6 +84,7 @@ ext {
     lifecycleExtVersion = '1.0.0-rc1'
     pagingVersion = '1.0.0-alpha3'
     roomVersion = '1.0.0-rc1'
+    bindingCollectionAdapterVersion = '2.2.0'
 
 
 

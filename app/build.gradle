@@ -75,6 +75,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${ext.daggerVersion}"
     kapt "android.arch.lifecycle:compiler:${ext.lifecycleExtVersion}"
     kapt "com.android.databinding:compiler:3.0.0"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:${ext.bindingCollectionAdapterVersion}"
 
     implementation("org.apache.httpcomponents:httpclient-android:${ext.apacheHttpClientVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }
     implementation("org.apache.httpcomponents:httpmime:${ext.apacheHttpMimeVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }

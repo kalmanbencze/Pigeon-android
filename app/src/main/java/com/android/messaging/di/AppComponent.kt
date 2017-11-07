@@ -12,7 +12,13 @@ import javax.inject.Singleton
  * Created by kalmanb on 9/21/17.
  */
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class, AppModule::class, ActivityBindingModule::class, ServiceBindingModule::class))
+@Component(modules = arrayOf(
+        AndroidInjectionModule::class,
+        AppModule::class,
+        ActivityBindingModule::class,
+        PersistenceModule::class,
+        RepositoryModule::class,
+        ServiceBindingModule::class))
 interface AppComponent {
 
     fun inject(app: MessagingApplication)

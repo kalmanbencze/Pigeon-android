@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.android.messaging.data.model.Contact" />
+
+        <import type="android.view.View" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <android.support.v4.widget.CircleImageView
+    <com.android.messaging.presentation.CircleImageView
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/com_facebook_button_send_icon_blue"
@@ -15,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="Tom Smith"
+        android:text="@{item.name}"
         android:textColor="@color/md_grey_800"
         android:textSize="18sp" />
 </LinearLayout>
+</layout>
