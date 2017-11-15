@@ -4,21 +4,20 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.messaging.R
 import com.android.messaging.databinding.FragmentContactsBinding
-import com.android.messaging.di.Injectable
 import com.android.messaging.presentation.databinding.DefaultBindingComponent
 import com.android.messaging.presentation.viewmodel.ContactsViewModel
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
  * Created by kalman.bencze on 02/11/2017.
  */
-class ContactsFragment : Fragment(), Injectable {
+class ContactsFragment : DaggerFragment() {
 
     companion object {
         const val TAG: String = "ConversationFragment"

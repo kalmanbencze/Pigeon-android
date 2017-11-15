@@ -1,36 +1,33 @@
 package com.android.messaging.di
 
 import android.app.Application
-import android.content.Context
 import com.android.messaging.MessagingApplication
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
-/**
- * Created by kalmanb on 9/21/17.
- */
+
 @Singleton
 @Component(modules = arrayOf(
-        AndroidInjectionModule::class,
-        AppModule::class,
+        ApplicationModule::class,
         ActivityBindingModule::class,
+        AndroidSupportInjectionModule::class,
         PersistenceModule::class,
-        RepositoryModule::class,
-        ServiceBindingModule::class))
-interface AppComponent {
+        RepositoryModule::class))
+interface AppComponent : AndroidInjector<DaggerApplication> {
 
-    fun inject(app: MessagingApplication)
+    fun inject(application: MessagingApplication)
+
+    override fun inject(instance: DaggerApplication)
 
     @Component.Builder
     interface Builder {
 
         @BindsInstance
-        fun application(application: Application): Builder
-
-        @BindsInstance
-        fun context(application: Context): Builder
+        fun application(application: Application): AppComponent.Builder
 
         fun build(): AppComponent
     }

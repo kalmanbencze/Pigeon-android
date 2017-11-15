@@ -8,5 +8,5 @@ import dagger.Component;
  */
 @ConversationScope
 @Component(dependencies = AppComponent.class, modules = {ConversationModule.class})
-public class ConversationComponent {
+public interface ConversationComponent {
 }

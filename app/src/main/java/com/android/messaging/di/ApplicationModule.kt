@@ -3,20 +3,25 @@ package com.android.messaging.di
 import android.app.Application
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ProcessLifecycleOwner
+import android.content.Context
 import com.android.messaging.data.ApplicationPreferences
 import com.android.messaging.data.Preferences
 import com.android.messaging.data.RunPreferences
 import com.android.messaging.data.VersionPreferences
-import com.android.messaging.di.viewmodel.ViewModelModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-/**
- * Created by kalman.bencze on 01/11/2017.
- */
-@Module(includes = arrayOf(ViewModelModule::class))
-class AppModule {
+
+@Module
+class ApplicationModule {
+
+    @Singleton
+    @Provides
+    internal fun provideContext(application: Application): Context {
+        return application
+    }
+
 
     @Provides
     fun provideLifeCycleOwner(): LifecycleOwner {

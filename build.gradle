@@ -31,33 +31,14 @@ ext {
             androidMinSdkVersion : 16,
             androidTargetSdkVersion : 25,
             androidCompileSdkVersion : 26,
-            //Modules
-            skmapsVersionCode : 7,
-            skmapsVersion : '1.0.7',
-            connectionProbeVersionCode : 1,
-            connectionProbeVersion : '1.0.0',
-            ffmpegVersionCode : 4,
-            ffmpegVersion : '1.0.4',
-            photoViewVersionCode : 1,
-            photoViewVersion : '1.0.0',
-            videoViewVersionCode : 1,
-            videoViewVersion : '1.0.0',
-            sphericalVersionCode : 1,
-            sphericalVersion : '1.0.0',
-            volleyVersionCode : 2,
-            volleyVersion : '1.0.1',
-            eventbusVersionCode : 1,
-            eventbusVersion : '1.0.0',
-            dotindicatorVersionCode : 1,
-            dotindicatorVersion : '1.0.0',
     ]
 
     // Sdk and tools
     supportVersion = '26.1.0'
-    playServicesVersion = '11.4.2'
+    playServicesVersion = '11.6.0'
 
     //Libraries
-    daggerVersion = '2.11'
+    daggerVersion = '2.13'
     rxJavaVersion = '2.1.3'
     rxBindingVersion = '2.0.0'
     rxAndroidVersion = '2.0.1'
@@ -81,9 +62,9 @@ ext {
     glideTransformationsVersion = '2.0.2'
     appIntroVersion = '4.1.0'
     lifecycleVersion = '1.0.3'
-    lifecycleExtVersion = '1.0.0-rc1'
+    lifecycleExtVersion = '1.0.0'
     pagingVersion = '1.0.0-alpha3'
-    roomVersion = '1.0.0-rc1'
+    roomVersion = '1.0.0'
     bindingCollectionAdapterVersion = '2.2.0'
 
 
@@ -104,9 +85,9 @@ ext {
     multidexVersion = '1.0.2'
 
     //Development
-    leakCanaryVersion = '1.5.1'
+    leakCanaryVersion = '1.5.4'
     stethoVersion = '1.5.0'
-    crashliticsVersion = '2.6.8'
+    crashliticsVersion = '2.7.1'
     crashliticsNdkVersion = '1.1.6'
     stethoOkhttpVersion = '1.5.0'
     okHttpLoggingInterceptorVersion = '3.8.0'
