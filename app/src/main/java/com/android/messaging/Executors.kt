@@ -11,6 +11,8 @@ import java.util.concurrent.Executors
 
 private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
 
+private val UI_EXECUTOR = UiExecutor()
+
 /**
  * Utility method to run blocks on a dedicated background thread, used for io/database work.
  */
@@ -22,7 +24,6 @@ fun uiThread(f: () -> Unit) {
     UI_EXECUTOR.execute(f)
 }
 
-val UI_EXECUTOR = UiExecutor()
 
 class UiExecutor : Executor {
     private val mHandler: Handler = Handler(Looper.getMainLooper())

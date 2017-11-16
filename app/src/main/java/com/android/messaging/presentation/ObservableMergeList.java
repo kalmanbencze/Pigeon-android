@@ -1,12 +1,12 @@
 package com.android.messaging.presentation;
 
+import android.databinding.ListChangeRegistry;
+import android.databinding.ObservableList;
+import android.support.annotation.NonNull;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import android.databinding.ListChangeRegistry;
-import android.databinding.ObservableList;
-import android.support.annotation.NonNull;
 
 /**
  * An {@link ObservableList} that presents multiple lists and items as one contiguous source.

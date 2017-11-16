@@ -40,10 +40,10 @@ class ContactsFragment : DaggerFragment() {
         viewModel.start()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentContactsBinding>(inflater, R.layout.fragment_contacts, null, false, DefaultBindingComponent()) as FragmentContactsBinding
-        binding.setViewModel(viewModel)
-        return binding.getRoot()
+        binding.viewModel = viewModel
+        return binding.root
     }
 
 

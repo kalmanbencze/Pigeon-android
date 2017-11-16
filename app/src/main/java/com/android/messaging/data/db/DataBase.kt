@@ -11,7 +11,7 @@ import com.android.messaging.ioThread
 /**
  * Created by kalman.bencze on 02/11/2017.
  */
-@Database(entities = arrayOf(Contact::class), version = 1)
+@Database(entities = arrayOf(Contact::class), version = 1, exportSchema = true)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun contactDao(): ContactsDao
@@ -43,10 +43,10 @@ abstract class DataBase : RoomDatabase() {
         val PREPOPULATE_DATA = listOf(
                 Contact(1, "val", "", "0746421301"),
                 Contact(2, "val 2", "", "0785152654"),
-                Contact(3, "val 2", "", "0785152654"),
-                Contact(4, "val 2", "", "0785152654"),
-                Contact(5, "val 2", "", "0785152654"),
-                Contact(6, "val 2", "", "0785152654")
+                Contact(3, "val 3", "", "0785152654"),
+                Contact(4, "val 4", "", "0785152654"),
+                Contact(5, "val 5", "", "0785152654"),
+                Contact(6, "val 6", "", "0785152654")
         )
     }
 }
