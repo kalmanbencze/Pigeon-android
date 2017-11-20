@@ -1,8 +1,6 @@
 package com.android.messaging.di
 
 import android.app.Application
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.ProcessLifecycleOwner
 import android.content.Context
 import com.android.messaging.data.ApplicationPreferences
 import com.android.messaging.data.Preferences
@@ -20,12 +18,6 @@ class ApplicationModule {
     @Provides
     internal fun provideContext(application: Application): Context {
         return application
-    }
-
-
-    @Provides
-    fun provideLifeCycleOwner(): LifecycleOwner {
-        return ProcessLifecycleOwner.get()
     }
 
     @Singleton

@@ -1,5 +1,6 @@
 package com.android.messaging.di.main
 
+import android.arch.lifecycle.LifecycleOwner
 import com.android.messaging.MainNavigator
 import com.android.messaging.di.scopes.ActivityScoped
 import com.android.messaging.di.scopes.FragmentScoped
@@ -20,6 +21,10 @@ abstract class MainModule {
     @ActivityScoped
     @Binds
     internal abstract fun mainNavigator(activity: MainActivity): MainNavigator
+
+    @ActivityScoped
+    @Binds
+    internal abstract fun lifecycleOwner(activity: MainActivity): LifecycleOwner
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))
