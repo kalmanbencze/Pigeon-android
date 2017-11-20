@@ -1,10 +1,10 @@
 package com.android.messaging.di.main
 
 import com.android.messaging.MainNavigator
-import com.android.messaging.MainNavigatorImpl
 import com.android.messaging.di.scopes.ActivityScoped
 import com.android.messaging.di.scopes.FragmentScoped
 import com.android.messaging.di.viewmodel.ViewModelModule
+import com.android.messaging.presentation.activity.MainActivity
 import com.android.messaging.presentation.fragment.ContactsFragment
 import com.android.messaging.presentation.fragment.ConversationFragment
 import dagger.Binds
@@ -19,7 +19,7 @@ abstract class MainModule {
 
     @ActivityScoped
     @Binds
-    internal abstract fun mainNavigator(navigator: MainNavigatorImpl): MainNavigator
+    internal abstract fun mainNavigator(activity: MainActivity): MainNavigator
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))

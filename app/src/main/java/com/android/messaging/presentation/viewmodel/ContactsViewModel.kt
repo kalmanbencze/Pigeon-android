@@ -4,13 +4,13 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
 import com.android.messaging.BR
 import com.android.messaging.R
 import com.android.messaging.data.model.Contact
 import com.android.messaging.data.repository.ContactRepository
 import com.android.messaging.presentation.BindingRecyclerAdapter
 import com.android.messaging.presentation.ViewHolder
+import com.android.messaging.presentation.databinding.OnContactClickListener
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 import javax.inject.Inject
@@ -20,15 +20,17 @@ import javax.inject.Inject
  */
 class ContactsViewModel @Inject
 internal constructor(
-        val contactRepository: ContactRepository, val owner: LifecycleOwner
+        private val contactRepository: ContactRepository, private val owner: LifecycleOwner
 ) : ViewModel() {
 
-    val contactList: ObservableList<Contact> = ObservableArrayList<Contact>()
+    val contactList: ObservableArrayList<Contact> = ObservableArrayList<Contact>()
+
+    val itemListener = OnContactClickListener()
 
     /**
      * Custom adapter that logs calls.
      */
-    val adapter: BindingRecyclerAdapter<Contact> = BindingRecyclerAdapter()
+    val adapter: BindingRecyclerAdapter<Contact> = BindingRecyclerAdapter(itemListener)
 
     val multipleItems = OnItemBindClass<Contact>()
             .map(Contact::class.java, BR.item, R.layout.item_contact)
@@ -37,8 +39,9 @@ internal constructor(
      * Custom view holders for RecyclerView
      */
     val viewHolder: BindingRecyclerViewAdapter.ViewHolderFactory = BindingRecyclerViewAdapter.ViewHolderFactory {
-        ViewHolder(it.getRoot())
+        ViewHolder(it.root)
     }
+
 
     fun start() {
         contactRepository.getContacts().observe(owner, Observer {
@@ -48,6 +51,5 @@ internal constructor(
                 contactList.addAll(it as List)
             }
         })
-
     }
 }

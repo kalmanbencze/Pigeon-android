@@ -3,6 +3,7 @@ package com.android.messaging.presentation.fragment
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import com.android.messaging.data.model.Contact
 import com.android.messaging.presentation.viewmodel.ConversationViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -14,6 +15,14 @@ class ConversationFragment : DaggerFragment() {
 
     companion object {
         const val TAG: String = "ConversationFragment"
+        const val EXTRA_CONTACT_ID: String = "extraContactId"
+
+        fun get(contact: Contact): ConversationFragment {
+            val cf = ConversationFragment()
+            cf.arguments = Bundle()
+            cf.arguments?.putInt(EXTRA_CONTACT_ID, contact.id)
+            return cf
+        }
     }
 
     @Inject

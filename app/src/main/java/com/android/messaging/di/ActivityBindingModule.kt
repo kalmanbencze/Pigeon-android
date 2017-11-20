@@ -1,5 +1,6 @@
 package com.android.messaging.di
 
+import com.android.messaging.di.main.MainModule
 import com.android.messaging.di.scopes.ActivityScoped
 import com.android.messaging.presentation.activity.MainActivity
 import dagger.Module
@@ -8,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 internal abstract class ActivityBindingModule {
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(FragmentBindingModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(MainModule::class))
     internal abstract fun contributeMainActivity(): MainActivity
 
 }

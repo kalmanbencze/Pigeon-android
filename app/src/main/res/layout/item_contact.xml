@@ -8,13 +8,18 @@
             name="item"
             type="com.android.messaging.data.model.Contact"
             />
+        <variable
+            name="listener"
+            type="com.android.messaging.presentation.databinding.SingleLiveEvent"
+            />
         <import type="android.view.View"/>
     </data>
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:onClick="@{() -> listener.setValue(item)}"
+        android:background="?attr/selectableItemBackgroundBorderless"
         >
         <com.android.messaging.presentation.CircleImageView
             android:layout_width="56dp"

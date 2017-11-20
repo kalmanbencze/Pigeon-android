@@ -58,6 +58,7 @@ class DefaultBindingAdapter {
             view.visibility = View.GONE
         } else {
             view.visibility = View.VISIBLE
+            @Suppress("DEPRECATION")
             view.setTextColor(view.context.resources.getColor(color))
         }
     }
