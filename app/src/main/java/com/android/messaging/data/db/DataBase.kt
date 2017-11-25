@@ -6,15 +6,17 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.android.messaging.data.model.Contact
+import com.android.messaging.data.model.Message
 import com.android.messaging.ioThread
 
 /**
  * Created by kalman.bencze on 02/11/2017.
  */
-@Database(entities = arrayOf(Contact::class), version = 1, exportSchema = true)
+@Database(entities = arrayOf(Contact::class, Message::class), version = 2, exportSchema = true)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun contactDao(): ContactsDao
+    abstract fun messagesDao(): MessagesDao
 
     companion object {
 
@@ -34,19 +36,29 @@ abstract class DataBase : RoomDatabase() {
                                 super.onCreate(db)
                                 // insert the data on the IO Thread
                                 ioThread {
-                                    getInstance(context).contactDao().insertAll(PREPOPULATE_DATA)
+                                    getInstance(context).contactDao().insertAll(PREPOPULATE_CONTACTS)
+                                    getInstance(context).messagesDao().insertAll(PREPOPULATE_MESSAGES)
                                 }
                             }
                         })
                         .build()
 
-        val PREPOPULATE_DATA = listOf(
+        val PREPOPULATE_CONTACTS = listOf(
                 Contact(1, "val", "", "0746421301"),
                 Contact(2, "val 2", "", "0785152654"),
                 Contact(3, "val 3", "", "0785152654"),
                 Contact(4, "val 4", "", "0785152654"),
                 Contact(5, "val 5", "", "0785152654"),
                 Contact(6, "val 6", "", "0785152654")
+        )
+
+        val PREPOPULATE_MESSAGES = listOf(
+                Message(1, 2, 1, "hello", System.currentTimeMillis()),
+                Message(4, 1, 2, "hi", System.currentTimeMillis() + 1),
+                Message(2, 2, 1, "whats up", System.currentTimeMillis() + 2),
+                Message(5, 1, 2, "nothing, just chilling", System.currentTimeMillis() + 3),
+                Message(3, 2, 1, "oh", System.currentTimeMillis() + 4),
+                Message(6, 1, 2, "having a bud watching the game", System.currentTimeMillis() + 5)
         )
     }
 }

@@ -15,6 +15,9 @@ import javax.inject.Singleton
 class ContactRepositoryRoom
 @Inject
 constructor(private val appExecutors: AppExecutors, private val db: DataBase) : ContactRepository {
+    override fun getContact(id: Int): LiveData<Contact> {
+        return db.contactDao().getContact(id)
+    }
 
     override fun getContacts(): LiveData<List<Contact>> {
         return db.contactDao().loadContacts()

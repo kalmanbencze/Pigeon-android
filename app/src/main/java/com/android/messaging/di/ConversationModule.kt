@@ -1,7 +1,10 @@
 package com.android.messaging.di
 
-import com.android.messaging.data.ConversationDep
-import com.android.messaging.di.scopes.ConversationScope
+import android.arch.lifecycle.LiveData
+import com.android.messaging.data.model.Contact
+import com.android.messaging.data.repository.ContactRepository
+import com.android.messaging.di.scopes.FragmentScoped
+import com.android.messaging.presentation.fragment.ConversationFragment
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +13,8 @@ import dagger.Provides
  */
 @Module
 internal class ConversationModule {
+    @FragmentScoped
     @Provides
-    @ConversationScope
-    fun provideConversationDep(): ConversationDep {
-        return ConversationDep()
-    }
+    fun provideContact(repo: ContactRepository, fragment: ConversationFragment): LiveData<Contact> =
+            repo.getContact(fragment.arguments?.getInt(ConversationFragment.EXTRA_CONTACT_ID)!!)
 }

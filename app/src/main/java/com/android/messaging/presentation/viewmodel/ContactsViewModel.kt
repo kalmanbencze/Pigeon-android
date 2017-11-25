@@ -8,7 +8,7 @@ import com.android.messaging.BR
 import com.android.messaging.R
 import com.android.messaging.data.model.Contact
 import com.android.messaging.data.repository.ContactRepository
-import com.android.messaging.presentation.BindingRecyclerAdapter
+import com.android.messaging.presentation.ClickableBindingAdapter
 import com.android.messaging.presentation.ViewHolder
 import com.android.messaging.presentation.databinding.OnContactClickListener
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
@@ -30,7 +30,7 @@ internal constructor(
     /**
      * Custom adapter that logs calls.
      */
-    val adapter: BindingRecyclerAdapter<Contact> = BindingRecyclerAdapter(itemListener)
+    val adapter: ClickableBindingAdapter<Contact> = ClickableBindingAdapter(itemListener)
 
     val multipleItems = OnItemBindClass<Contact>()
             .map(Contact::class.java, BR.item, R.layout.item_contact)

@@ -24,7 +24,11 @@ abstract class MainModule {
 
     @ActivityScoped
     @Binds
-    internal abstract fun lifecycleOwner(activity: MainActivity): LifecycleOwner
+    internal abstract fun lifecycleOwnerActivity(activity: MainActivity): LifecycleOwner
+
+//    @FragmentScoped
+//    @Binds
+//    internal abstract fun lifecycleOwnerFragment(fragment: Fragment): LifecycleOwner
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))
