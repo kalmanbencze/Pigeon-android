@@ -10,9 +10,9 @@ import com.android.messaging.data.model.Message
 import com.android.messaging.data.repository.MessageRepository
 import com.android.messaging.presentation.ConversationBindingAdapter
 import com.android.messaging.presentation.ViewHolder
-import com.android.messaging.presentation.databinding.OnMessageClickListener
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -26,8 +26,6 @@ internal constructor(
 
     val messagesList: ObservableArrayList<Message> = ObservableArrayList<Message>()
 
-    val itemListener = OnMessageClickListener()
-
     /**
      * Custom adapter that logs calls.
      */
@@ -35,7 +33,7 @@ internal constructor(
 
     val multipleItems = OnItemBindClass<Message>()
             .map(Message::class.java, BR.received, R.layout.item_message_received)
-            .map(Message::class.java, BR.sent, R.layout.item_message_sent)
+            .map(Message::class.java, BR.sent, R.layout.item_message_sent)!!
 
     /**
      * Custom view holders for RecyclerView
@@ -50,7 +48,8 @@ internal constructor(
             messagesList.clear()
             it.let {
                 messagesList.clear()
-                messagesList.addAll(it as List)
+                Collections.sort(it as List, { left, right -> (left.timestamp - right.timestamp).toInt() })
+                messagesList.addAll(it)
             }
         })
     }
