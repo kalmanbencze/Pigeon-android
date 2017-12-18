@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2a0ec0a6e82919dffe6f959e472c5fae",
+    "identityHash": "e6eb48a7afd5d5eac61a3fb5bc741268",
     "entities": [
       {
         "tableName": "Contacts",
@@ -83,7 +83,24 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Messages_senderId",
+            "unique": false,
+            "columnNames": [
+              "senderId"
+            ],
+            "createSql": "CREATE  INDEX `index_Messages_senderId` ON `${TABLE_NAME}` (`senderId`)"
+          },
+          {
+            "name": "index_Messages_receiverId",
+            "unique": false,
+            "columnNames": [
+              "receiverId"
+            ],
+            "createSql": "CREATE  INDEX `index_Messages_receiverId` ON `${TABLE_NAME}` (`receiverId`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "Contacts",
@@ -112,7 +129,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2a0ec0a6e82919dffe6f959e472c5fae\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e6eb48a7afd5d5eac61a3fb5bc741268\")"
     ]
   }
 }

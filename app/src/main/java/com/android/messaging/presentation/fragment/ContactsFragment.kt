@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,9 @@ import com.android.messaging.MainNavigator
 import com.android.messaging.R
 import com.android.messaging.data.model.Contact
 import com.android.messaging.databinding.FragmentContactsBinding
+import com.android.messaging.presentation.ContactBindingAdapter
 import com.android.messaging.presentation.databinding.DefaultBindingComponent
+import com.android.messaging.presentation.databinding.OnContactClickListener
 import com.android.messaging.presentation.viewmodel.ContactsViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -30,6 +33,8 @@ class ContactsFragment : DaggerFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    val itemListener = OnContactClickListener()
+
     private lateinit var viewModel: ContactsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +46,7 @@ class ContactsFragment : DaggerFragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.itemListener.observe(this, Observer { contact ->
+        itemListener.observe(this, Observer { contact ->
             Log.d(TAG, "onStart: " + contact)
             contact?.let { openConversation(contact) }
         })
@@ -55,10 +60,17 @@ class ContactsFragment : DaggerFragment() {
         navigator.openConversationScreen(contact)
     }
 
+    private lateinit var adapter: ContactBindingAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentContactsBinding>(inflater, R.layout.fragment_contacts, null, false, DefaultBindingComponent()) as FragmentContactsBinding
         binding.viewModel = viewModel
-        viewModel.start()
+        activity?.let {
+            adapter = ContactBindingAdapter(it, itemListener)
+            binding.contactList.adapter = adapter
+            binding.contactList.layoutManager = LinearLayoutManager(activity)
+            viewModel.contactList.observe(this, Observer<List<Contact>> { list -> list?.let { data -> adapter.setData(data) } })
+        }
         return binding.root
     }
 

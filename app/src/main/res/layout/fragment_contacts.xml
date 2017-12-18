@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <import type="com.android.messaging.presentation.LayoutManagers" />
-
         <variable
             name="viewModel"
             type="com.android.messaging.presentation.viewmodel.ContactsViewModel" />
@@ -17,14 +14,10 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/contact_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:adapter="@{viewModel.adapter}"
-            app:itemBinding="@{viewModel.multipleItems}"
-            app:items="@{viewModel.contactList}"
-            app:layoutManager="@{LayoutManagers.linear()}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:viewHolder="@{viewModel.viewHolder}"
             tools:listitem="@layout/item_contact">
 
         </android.support.v7.widget.RecyclerView>

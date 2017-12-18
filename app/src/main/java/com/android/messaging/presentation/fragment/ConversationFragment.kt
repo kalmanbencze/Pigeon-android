@@ -4,13 +4,14 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.messaging.R
 import com.android.messaging.data.model.Contact
-import com.android.messaging.databinding.FragmentContactsBinding
 import com.android.messaging.databinding.FragmentConversationBinding
+import com.android.messaging.presentation.ConversationBindingAdapter
 import com.android.messaging.presentation.databinding.DefaultBindingComponent
 import com.android.messaging.presentation.viewmodel.ConversationViewModel
 import dagger.android.support.DaggerFragment
@@ -46,8 +47,10 @@ class ConversationFragment : DaggerFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentContactsBinding>(inflater, R.layout.fragment_conversation, null, false, DefaultBindingComponent()) as FragmentConversationBinding
+        val binding = DataBindingUtil.inflate<FragmentConversationBinding>(inflater, R.layout.fragment_conversation, null, false, DefaultBindingComponent()) as FragmentConversationBinding
         binding.viewModel = viewModel
+        binding.messageList.adapter = activity?.let { ConversationBindingAdapter(it) }
+        binding.messageList.layoutManager = LinearLayoutManager(activity)
         viewModel.start(arguments!!.getInt(EXTRA_CONTACT_ID))
         return binding.root
     }

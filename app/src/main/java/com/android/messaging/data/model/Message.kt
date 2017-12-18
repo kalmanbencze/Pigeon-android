@@ -24,9 +24,9 @@ class Message(
         @ColumnInfo(name = "id")
         @PrimaryKey(autoGenerate = true)
         var id: Int,
-        @ColumnInfo(name = "senderId")
+        @ColumnInfo(name = "senderId", index = true)
         var senderId: Int,
-        @ColumnInfo(name = "receiverId")
+        @ColumnInfo(name = "receiverId", index = true)
         var receiverId: Int,
         @ColumnInfo(name = "content")
         var content: String,
