@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.60'
+    ext.kotlin_version = '1.2.10'
     repositories {
         google()
         jcenter()
@@ -10,7 +10,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'io.fabric.tools:gradle:1.24.2'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
@@ -34,7 +34,7 @@ ext {
     ]
 
     // Sdk and tools
-    supportVersion = '27.0.1'
+    supportVersion = '27.0.2'
     playServicesVersion = '11.6.0'
 
     //Libraries
@@ -63,7 +63,7 @@ ext {
     appIntroVersion = '4.1.0'
     lifecycleVersion = '1.0.3'
     lifecycleExtVersion = '1.0.0'
-    pagingVersion = '1.0.0-alpha3'
+    pagingVersion = '1.0.0-alpha4-1'
     roomVersion = '1.0.0'
     bindingCollectionAdapterVersion = '2.2.0'
 

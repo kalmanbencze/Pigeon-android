@@ -12,7 +12,7 @@ import com.android.messaging.ioThread
 /**
  * Created by kalman.bencze on 02/11/2017.
  */
-@Database(entities = arrayOf(Contact::class, Message::class), version = 2, exportSchema = true)
+@Database(entities = arrayOf(Contact::class, Message::class), version = 1, exportSchema = true)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun contactDao(): ContactsDao
