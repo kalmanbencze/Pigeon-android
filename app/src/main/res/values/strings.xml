@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Messaging</string>
+    <string name="logout_title_label">Log out</string>
+    <string name="log_out_confirmation_message">Are you sure you want to log out?</string>
+    <string name="yes_label">YES</string>
+    <string name="no_label">NO</string>
 </resources>

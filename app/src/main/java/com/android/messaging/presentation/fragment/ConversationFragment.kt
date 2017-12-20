@@ -13,17 +13,17 @@ import android.view.ViewGroup
 import com.android.messaging.R
 import com.android.messaging.data.model.Contact
 import com.android.messaging.databinding.FragmentConversationBinding
+import com.android.messaging.presentation.BaseFragment
 import com.android.messaging.presentation.ConversationBindingAdapter
 import com.android.messaging.presentation.databinding.DefaultBindingComponent
 import com.android.messaging.presentation.databinding.OnMessageClickListener
 import com.android.messaging.presentation.viewmodel.ConversationViewModel
-import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
  * Created by kalman.bencze on 01/11/2017.
  */
-class ConversationFragment : DaggerFragment() {
+class ConversationFragment : BaseFragment() {
 
     companion object {
         const val TAG: String = "ConversationFragment"
@@ -70,7 +70,12 @@ class ConversationFragment : DaggerFragment() {
             viewModel.messagesList.observe(this, Observer { list ->
                 list?.let { data -> adapter.setData(data) }
             })
+            viewModel.title.observe(this, Observer { title -> title?.let { data -> setActionBarTitle(data) } })
         }
         return binding.root
+    }
+
+    fun setActionBarTitle(title: String) {
+        actionBar?.title = title
     }
 }

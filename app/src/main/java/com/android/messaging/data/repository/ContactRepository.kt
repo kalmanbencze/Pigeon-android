@@ -9,4 +9,5 @@ import com.android.messaging.data.model.Contact
 interface ContactRepository {
     fun getContacts(): LiveData<List<Contact>>
     fun getContact(id: Int): LiveData<Contact>
+    fun getContactName(contactId: Int): LiveData<String>
 }

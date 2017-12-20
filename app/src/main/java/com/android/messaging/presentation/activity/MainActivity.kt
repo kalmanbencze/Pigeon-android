@@ -7,12 +7,12 @@ import com.android.messaging.MainNavigator
 import com.android.messaging.R
 import com.android.messaging.data.Preferences
 import com.android.messaging.data.model.Contact
+import com.android.messaging.presentation.BaseActivity
 import com.android.messaging.presentation.fragment.ContactsFragment
 import com.android.messaging.presentation.fragment.ConversationFragment
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(), MainNavigator {
+class MainActivity : BaseActivity(), MainNavigator {
     override fun openConversationScreen(contact: Contact) {
         openFragment(ConversationFragment.get(contact), ConversationFragment.TAG)
     }

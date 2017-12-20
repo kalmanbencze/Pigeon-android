@@ -6,6 +6,7 @@ import com.android.messaging.data.ApplicationPreferences
 import com.android.messaging.data.Preferences
 import com.android.messaging.data.RunPreferences
 import com.android.messaging.data.VersionPreferences
+import com.android.messaging.data.model.User
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -24,6 +25,12 @@ class ApplicationModule {
     @Provides
     fun provideApplicationPreferences(application: Application): ApplicationPreferences {
         return ApplicationPreferences(application)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUser(): User {
+        return User(0, "Kali", "https://avatars2.githubusercontent.com/u/15101592?s=460&v=4", "0123456789")
     }
 
     @Singleton

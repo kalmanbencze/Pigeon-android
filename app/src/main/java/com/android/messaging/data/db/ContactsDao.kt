@@ -27,4 +27,8 @@ interface ContactsDao {
     @Language("RoomSql")
     @Query("SELECT * FROM Contacts ORDER BY id ASC")
     fun loadContacts(): LiveData<List<Contact>>
+
+    @Language("RoomSql")
+    @Query("SELECT name FROM Contacts WHERE id = :contactId")
+    fun getContactName(contactId: Int): LiveData<String>
 }
