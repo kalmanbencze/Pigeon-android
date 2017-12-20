@@ -3,6 +3,7 @@ package com.android.messaging.data.db
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.android.messaging.data.model.Contact
+import org.intellij.lang.annotations.Language
 
 
 /**
@@ -19,9 +20,11 @@ interface ContactsDao {
     @Delete
     fun delete(contact: Contact)
 
-    @Query("SELECT * FROM Contacts " + "WHERE id = :contactId")
+    @Language("RoomSql")
+    @Query("SELECT * FROM Contacts WHERE id = :contactId")
     fun getContact(contactId: Int): LiveData<Contact>
 
-    @Query("SELECT * FROM Contacts")
+    @Language("RoomSql")
+    @Query("SELECT * FROM Contacts ORDER BY id ASC")
     fun loadContacts(): LiveData<List<Contact>>
 }

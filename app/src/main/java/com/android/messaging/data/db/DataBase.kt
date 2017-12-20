@@ -44,12 +44,12 @@ abstract class DataBase : RoomDatabase() {
                         .build()
 
         val PREPOPULATE_CONTACTS = listOf(
-                Contact(1, "val", "", "0746421301"),
-                Contact(2, "val 2", "", "0785152654"),
-                Contact(3, "val 3", "", "0785152654"),
-                Contact(4, "val 4", "", "0785152654"),
-                Contact(5, "val 5", "", "0785152654"),
-                Contact(6, "val 6", "", "0785152654")
+                Contact(1, "Tom", "", "0746421301"),
+                Contact(2, "Jeff", "", "0785152654"),
+                Contact(3, "Fred", "", "0785152654"),
+                Contact(4, "Miriam", "", "0785152654"),
+                Contact(5, "Vanessa", "", "0785152654"),
+                Contact(6, "Ed", "", "0785152654")
         )
 
         val PREPOPULATE_MESSAGES = listOf(

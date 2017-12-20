@@ -11,11 +11,12 @@ import com.android.messaging.data.model.Message
 import com.android.messaging.databinding.ItemMessageReceivedBinding
 import com.android.messaging.databinding.ItemMessageSentBinding
 import com.android.messaging.presentation.databinding.SingleLiveEvent
+import java.util.*
 
 /**
  * Created by kalmanb on 9/6/17.
  */
-class ConversationBindingAdapter(context: Context, val listener: SingleLiveEvent<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConversationBindingAdapter(context: Context, val senderId: Int, val listener: SingleLiveEvent<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_SENT: Int = 0
 
@@ -45,6 +46,10 @@ class ConversationBindingAdapter(context: Context, val listener: SingleLiveEvent
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (data.get(position).senderId == senderId) VIEW_TYPE_RECEIVED else VIEW_TYPE_SENT
     }
 
     companion object {

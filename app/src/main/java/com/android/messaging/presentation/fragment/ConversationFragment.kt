@@ -63,7 +63,7 @@ class ConversationFragment : DaggerFragment() {
         val binding = DataBindingUtil.inflate<FragmentConversationBinding>(inflater, R.layout.fragment_conversation, null, false, DefaultBindingComponent()) as FragmentConversationBinding
         activity?.let {
             binding.viewModel = viewModel
-            adapter = ConversationBindingAdapter(it, itemListener)
+            adapter = ConversationBindingAdapter(it, arguments!!.getInt(EXTRA_CONTACT_ID), itemListener)
             binding.messageList.adapter = adapter
             binding.messageList.layoutManager = LinearLayoutManager(activity)
             viewModel.start(arguments!!.getInt(EXTRA_CONTACT_ID))

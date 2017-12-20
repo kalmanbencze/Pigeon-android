@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.android.messaging.data.model.Message
+import org.intellij.lang.annotations.Language
 
 
 /**
@@ -19,6 +20,7 @@ interface MessagesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(messages: List<Message>)
 
-    @Query("SELECT * FROM Messages" + " WHERE receiverId = :contactId OR senderId = :contactId")
+    @Language("RoomSql")
+    @Query("SELECT * FROM Messages WHERE receiverId = :contactId OR senderId = :contactId ORDER BY timestamp ASC")
     fun loadMessages(contactId: Int): LiveData<List<Message>>
 }
