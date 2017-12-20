@@ -14,19 +14,19 @@ import com.android.messaging.presentation.databinding.SingleLiveEvent
 /**
  * Created by kalmanb on 9/6/17.
  */
-class ContactBindingAdapter(context: Context, val listener: SingleLiveEvent<Contact>) : RecyclerView.Adapter<ViewHolder>() {
+class ContactBindingAdapter(context: Context, val listener: SingleLiveEvent<Contact>) : RecyclerView.Adapter<ContactViewHolder>() {
 
     private var layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     private var data = ArrayList<Contact>()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ContactViewHolder {
         val view = DataBindingUtil.inflate<ItemContactBinding>(layoutInflater, R.layout.item_contact, parent, false)
-        return ViewHolder(view)
+        return ContactViewHolder(view)
 
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ContactViewHolder?, position: Int) {
         holder?.bind(data.get(position), listener)
     }
 
@@ -62,7 +62,7 @@ class ContactDiffCallback(val oldList: List<Contact>, val newList: List<Contact>
     }
 }
 
-class ViewHolder(var binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
+class ContactViewHolder(var binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(contact: Contact, listener: SingleLiveEvent<Contact>) {
         binding.item = contact
         binding.listener = listener

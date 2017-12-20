@@ -2,6 +2,7 @@ package com.android.messaging.presentation
 
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import com.android.messaging.presentation.databinding.SingleLiveEvent
 /**
  * Created by kalmanb on 9/6/17.
  */
-class ConversationBindingAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConversationBindingAdapter(context: Context, val listener: SingleLiveEvent<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_SENT: Int = 0
 
@@ -35,6 +36,11 @@ class ConversationBindingAdapter(context: Context) : RecyclerView.Adapter<Recycl
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        if (holder is SentViewHolder) {
+            holder.bind(data.get(position), listener)
+        } else if (holder is ReceivedViewHolder) {
+            holder.bind(data.get(position), listener)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -43,6 +49,32 @@ class ConversationBindingAdapter(context: Context) : RecyclerView.Adapter<Recycl
 
     companion object {
         val TAG = "ClickableBindingAdapter"
+    }
+
+    fun setData(data: List<Message>) {
+        val result = DiffUtil.calculateDiff(MessageDiffCallback(this.data, data))
+        this.data.clear();
+        this.data.addAll(data);
+        result.dispatchUpdatesTo(this);
+    }
+}
+
+class MessageDiffCallback(val oldList: List<Message>, val newList: List<Message>) : DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList.get(oldItemPosition).id == newList.get(newItemPosition).id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return newList.get(newItemPosition).equals(oldList.get(oldItemPosition))
     }
 }
 

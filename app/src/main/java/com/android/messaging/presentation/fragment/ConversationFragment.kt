@@ -1,10 +1,12 @@
 package com.android.messaging.presentation.fragment
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import com.android.messaging.data.model.Contact
 import com.android.messaging.databinding.FragmentConversationBinding
 import com.android.messaging.presentation.ConversationBindingAdapter
 import com.android.messaging.presentation.databinding.DefaultBindingComponent
+import com.android.messaging.presentation.databinding.OnMessageClickListener
 import com.android.messaging.presentation.viewmodel.ConversationViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -34,6 +37,9 @@ class ConversationFragment : DaggerFragment() {
         }
     }
 
+
+    val itemListener = OnMessageClickListener()
+
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -44,14 +50,27 @@ class ConversationFragment : DaggerFragment() {
         viewModelFactory.create(ConversationViewModel::class.java)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ConversationViewModel::class.java)
+
+        itemListener.observe(this, Observer { contact ->
+            Log.d(ContactsFragment.TAG, "onStart: " + contact)
+            contact?.let { }
+        })
     }
+
+    private lateinit var adapter: ConversationBindingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentConversationBinding>(inflater, R.layout.fragment_conversation, null, false, DefaultBindingComponent()) as FragmentConversationBinding
-        binding.viewModel = viewModel
-        binding.messageList.adapter = activity?.let { ConversationBindingAdapter(it) }
-        binding.messageList.layoutManager = LinearLayoutManager(activity)
-        viewModel.start(arguments!!.getInt(EXTRA_CONTACT_ID))
+        activity?.let {
+            binding.viewModel = viewModel
+            adapter = ConversationBindingAdapter(it, itemListener)
+            binding.messageList.adapter = adapter
+            binding.messageList.layoutManager = LinearLayoutManager(activity)
+            viewModel.start(arguments!!.getInt(EXTRA_CONTACT_ID))
+            viewModel.messagesList.observe(this, Observer { list ->
+                list?.let { data -> adapter.setData(data) }
+            })
+        }
         return binding.root
     }
 }
