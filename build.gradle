@@ -67,9 +67,6 @@ ext {
     roomVersion = '1.0.0'
     bindingCollectionAdapterVersion = '2.2.0'
 
-
-
-
     //Testing
     robolectricVersion = '3.3.2'
     jUnitVersion = '4.12'
