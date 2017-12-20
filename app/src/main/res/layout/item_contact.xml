@@ -6,11 +6,11 @@
     <data>
         <variable
             name="item"
-            type="com.android.messaging.data.model.Contact"
+            type="me.kalmanbncz.pigeon.data.model.Contact"
             />
         <variable
             name="listener"
-            type="com.android.messaging.presentation.databinding.SingleLiveEvent"
+            type="me.kalmanbncz.pigeon.presentation.databinding.SingleLiveEvent"
             />
         <import type="android.view.View"/>
     </data>
@@ -21,7 +21,8 @@
         android:onClick="@{() -> listener.setValue(item)}"
         android:orientation="horizontal"
         >
-        <com.android.messaging.presentation.CircleImageView
+
+        <me.kalmanbncz.pigeon.presentation.CircleImageView
             android:id="@+id/circleImageView"
             android:layout_width="56dp"
             android:layout_height="56dp"

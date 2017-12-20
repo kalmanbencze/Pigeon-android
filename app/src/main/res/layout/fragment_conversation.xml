@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.android.messaging.presentation.viewmodel.ConversationViewModel" />
+            type="me.kalmanbncz.pigeon.presentation.viewmodel.ConversationViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

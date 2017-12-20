@@ -22,7 +22,7 @@ buildscript {
 
 ext {
     config = [
-            appId : 'com.android.messaging',
+            appId : 'me.kalmanbncz.pigeon',
             appVersionCode : 1,
             appVersionName : "0.0.1",
             testInstrumentationRunner : "android.support.test.runner.AndroidJUnitRunner",

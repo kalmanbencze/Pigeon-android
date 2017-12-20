@@ -7,11 +7,11 @@
 
         <variable
             name="sent"
-            type="com.android.messaging.data.model.Message" />
+            type="me.kalmanbncz.pigeon.data.model.Message" />
 
         <variable
             name="listener"
-            type="com.android.messaging.presentation.databinding.SingleLiveEvent" />
+            type="me.kalmanbncz.pigeon.presentation.databinding.SingleLiveEvent" />
 
         <import type="android.view.View" />
     </data>

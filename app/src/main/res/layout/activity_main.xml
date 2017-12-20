@@ -6,7 +6,7 @@
         android:id="@+id/content_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.android.messaging.presentation.activity.MainActivity">
+        tools:context="me.kalmanbncz.pigeon.presentation.activity.MainActivity">
 
     </FrameLayout>
 </layout>
