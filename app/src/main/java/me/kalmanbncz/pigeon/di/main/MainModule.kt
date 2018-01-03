@@ -11,6 +11,7 @@ import me.kalmanbncz.pigeon.di.viewmodel.ViewModelModule
 import me.kalmanbncz.pigeon.presentation.activity.MainActivity
 import me.kalmanbncz.pigeon.presentation.fragment.ContactsFragment
 import me.kalmanbncz.pigeon.presentation.fragment.ConversationFragment
+import me.kalmanbncz.pigeon.presentation.fragment.NewMessageFragment
 
 /**
  * Created by kalman.bencze on 07/11/2017.
@@ -37,5 +38,9 @@ abstract class MainModule {
     @FragmentScoped
     @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))
     internal abstract fun contributeContactsFragment(): ContactsFragment
+
+    @FragmentScoped
+    @ContributesAndroidInjector(modules = arrayOf(ViewModelModule::class))
+    internal abstract fun contributeNewMessageFragment(): NewMessageFragment
 
 }

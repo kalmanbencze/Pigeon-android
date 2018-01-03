@@ -10,9 +10,14 @@ import me.kalmanbncz.pigeon.data.model.Contact
 import me.kalmanbncz.pigeon.presentation.BaseActivity
 import me.kalmanbncz.pigeon.presentation.fragment.ContactsFragment
 import me.kalmanbncz.pigeon.presentation.fragment.ConversationFragment
+import me.kalmanbncz.pigeon.presentation.fragment.NewMessageFragment
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainNavigator {
+    override fun openNewMessageScreen() {
+        openFragment(NewMessageFragment.get(), NewMessageFragment.TAG)
+    }
+
     override fun openConversationScreen(contact: Contact) {
         openFragment(ConversationFragment.get(contact), ConversationFragment.TAG)
     }

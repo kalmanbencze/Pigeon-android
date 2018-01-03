@@ -7,4 +7,5 @@ import me.kalmanbncz.pigeon.data.model.Contact
  */
 interface MainNavigator {
     fun openConversationScreen(contact: Contact)
+    fun openNewMessageScreen()
 }

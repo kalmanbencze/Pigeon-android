@@ -15,10 +15,6 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.*
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.signature.StringSignature
 import me.kalmanbncz.pigeon.MainNavigator
 import me.kalmanbncz.pigeon.R
 import me.kalmanbncz.pigeon.data.model.Contact
@@ -62,6 +58,13 @@ class ContactsFragment : BaseFragment() {
             contact?.let { openConversation(contact) }
         })
 
+        setActionBarTitle(getString(R.string.app_name))
+        initializeSideMenuDrawer()
+    }
+
+    override fun onStop() {
+        clearSideMenuDrawer();
+        super.onStop()
     }
 
     @Inject
@@ -76,6 +79,7 @@ class ContactsFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentContactsBinding>(inflater, R.layout.fragment_contacts, null, false, DefaultBindingComponent()) as FragmentContactsBinding
         binding.viewModel = viewModel
+        binding.newMessageButton.setOnClickListener { navigator.openNewMessageScreen() }
         activity?.let {
             adapter = ContactBindingAdapter(it, itemListener)
             binding.contactList.adapter = adapter
@@ -83,12 +87,6 @@ class ContactsFragment : BaseFragment() {
             viewModel.contactList.observe(this, Observer<List<Contact>> { list -> list?.let { data -> adapter.setData(data) } })
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setActionBarTitle(getString(R.string.app_name))
-        initializeSideMenuDrawer()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -103,13 +101,17 @@ class ContactsFragment : BaseFragment() {
     @Inject
     lateinit var user: User
 
+    private var drawerListener: DrawerLayout.DrawerListener? = null
+
+    private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
+
     private fun initializeSideMenuDrawer() {
 
         // Initializing Toolbar
         val toolbar = view?.findViewById(R.id.toolbar) as Toolbar
 
         // Initializing Drawer Layout
-        val drawerLayout = view?.findViewById(R.id.drawer_layout) as DrawerLayout
+        drawerLayout = view?.findViewById(R.id.drawer_layout) as DrawerLayout
 
         // Initializing NavigationView
         val navigationView = view?.findViewById(R.id.navigation_view) as NavigationView
@@ -119,7 +121,7 @@ class ContactsFragment : BaseFragment() {
          */
         navigationView.setNavigationItemSelectedListener({ menuItem ->
             // Closing drawer on item click
-            drawerLayout.closeDrawers()
+            drawerLayout?.closeDrawers()
             // Check to see which item was being clicked and perform appropriate action
             var message = "Not yet implemented."
             when (menuItem.getItemId()) {
@@ -127,7 +129,7 @@ class ContactsFragment : BaseFragment() {
                 R.id.navigation_help -> message = "Help Selected"
                 R.id.navigation_about -> message = "About Selected"
                 R.id.navigation_logout -> {
-                    context?.let {
+                    activity?.let {
                         AlertDialog.Builder(it)
                                 .setTitle(R.string.logout_title_label)
                                 .setMessage(R.string.log_out_confirmation_message)
@@ -142,14 +144,14 @@ class ContactsFragment : BaseFragment() {
         })
         val headerView = navigationView.getHeaderView(0)
         val profilePictureImageView = headerView.findViewById(R.id.profile_image) as CircleImageView
-        Glide.with(context)
-                .load(user.photo)
-                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .skipMemoryCache(false)
-                .signature(StringSignature(user.name + " " + user.photo))
-                .priority(Priority.IMMEDIATE)
-                .error(R.drawable.vector_profile_placeholder).into(profilePictureImageView)
+//        Glide.with(context)
+//                .load(user.photo)
+//                .fitCenter()
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .skipMemoryCache(false)
+//                .signature(StringSignature(user.name + " " + user.photo))
+//                .priority(Priority.IMMEDIATE)
+//                .error(R.drawable.vector_profile_placeholder).into(profilePictureImageView)
 
         val usernameTextView = headerView.findViewById(R.id.user_textview) as TextView
         usernameTextView.setText(user.name)
@@ -157,13 +159,16 @@ class ContactsFragment : BaseFragment() {
         val emailTextView = headerView.findViewById(R.id.email_textview) as TextView
         emailTextView.setText(user.number)
 
-        val actionBarDrawerToggle = ActionBarDrawerToggle(activity,
+        actionBarDrawerToggle = ActionBarDrawerToggle(activity,
                 drawerLayout, toolbar, R.string.app_name, R.string.app_name)
+
         // Setting the actionbarToggle to drawer layout
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        drawerLayout?.addDrawerListener(actionBarDrawerToggle as DrawerLayout.DrawerListener)
         // Calling sync state is necessary or else your hamburger icon won't show up
-        actionBarDrawerToggle.syncState()
-        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+        actionBarDrawerToggle?.syncState()
+
+
+        drawerListener = object : DrawerLayout.DrawerListener {
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
 
@@ -173,8 +178,16 @@ class ContactsFragment : BaseFragment() {
 
             override fun onDrawerStateChanged(newState: Int) {
             }
-        })
+        }
+        drawerLayout?.addDrawerListener(drawerListener as DrawerLayout.DrawerListener)
 
+    }
+
+    private fun clearSideMenuDrawer() {
+        drawerListener?.let { drawerLayout?.removeDrawerListener(it) }
+        drawerListener = null
+        actionBarDrawerToggle?.let { drawerLayout?.removeDrawerListener(it) }
+        actionBarDrawerToggle = null
     }
 
 

@@ -29,6 +29,16 @@
                 tools:listitem="@layout/item_contact">
 
             </android.support.v7.widget.RecyclerView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/new_message_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="15dp"
+                android:src="@drawable/vector_message_white"
+                app:elevation="8dp"
+                app:fabSize="normal" />
         </android.support.design.widget.CoordinatorLayout>
 
 
