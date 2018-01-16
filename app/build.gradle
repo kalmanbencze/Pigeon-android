@@ -63,54 +63,45 @@ dependencies {
     implementation "com.android.support:percent:${ext.supportVersion}"
     implementation "com.android.support:customtabs:${ext.supportVersion}"
     implementation "com.android.support:support-annotations:${ext.supportVersion}"
-//    implementation "com.google.android.gms:play-services-location:${ext.playServicesVersion}"
-//    implementation "com.google.android.gms:play-services-auth:${ext.playServicesVersion}"
-//    implementation "com.google.firebase:firebase-auth:${ext.firebaseVersion}"
-//    implementation("com.google.api-client:google-api-client-android:${ext.googleApiVersion}") { exclude group: 'org.apache.httpcomponents' }
     implementation "com.facebook.android:facebook-android-sdk:${ext.facebookApiVersion}"
     implementation "com.github.bumptech.glide:glide:${ext.glideVersion}"
-//    implementation "com.pnikosis:materialish-progress:${ext.materialishProgressVersion}"
-//    implementation "com.github.paolorotolo:appintro:${ext.appIntroVersion}"
-
+    implementation("com.github.hotchemi:permissionsdispatcher:${ext.permissionDispatcherVersion}") { exclude module: "support-v13" }
     implementation "com.google.dagger:dagger:${ext.daggerVersion}"
     implementation "com.google.dagger:dagger-android:${ext.daggerVersion}"
     implementation "com.google.dagger:dagger-android-support:${ext.daggerVersion}"
     implementation "android.arch.lifecycle:runtime:${ext.lifecycleVersion}"
     implementation "android.arch.paging:runtime:${ext.pagingVersion}"
-    implementation "android.arch.lifecycle:extensions:${ext.lifecycleExtVersion}"//warning is wrong about new version: alpha9-1
+    implementation "android.arch.lifecycle:extensions:${ext.lifecycleExtVersion}"
     implementation "android.arch.persistence.room:runtime:${ext.roomVersion}"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'org.jetbrains:annotations:15.0'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakCanaryVersion}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakCanaryVersion}"
     kapt "android.arch.persistence.room:compiler:${ext.roomVersion}"
     kapt "com.google.dagger:dagger-compiler:${ext.daggerVersion}"
     kapt "com.google.dagger:dagger-android-processor:${ext.daggerVersion}"
     kapt "android.arch.lifecycle:compiler:${ext.lifecycleExtVersion}"
     kapt "com.android.databinding:compiler:3.0.1"
+    kapt "com.github.hotchemi:permissionsdispatcher-processor:${ext.permissionDispatcherVersion}"
 
+//    implementation "com.google.android.gms:play-services-location:${ext.playServicesVersion}"
+//    implementation "com.google.android.gms:play-services-auth:${ext.playServicesVersion}"
+//    implementation "com.google.firebase:firebase-auth:${ext.firebaseVersion}"
+//    implementation("com.google.api-client:google-api-client-android:${ext.googleApiVersion}") { exclude group: 'org.apache.httpcomponents' }
+//    implementation "com.pnikosis:materialish-progress:${ext.materialishProgressVersion}"
+//    implementation "com.github.paolorotolo:appintro:${ext.appIntroVersion}"
 //    implementation("org.apache.httpcomponents:httpclient-android:${ext.apacheHttpClientVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }
 //    implementation("org.apache.httpcomponents:httpmime:${ext.apacheHttpMimeVersion}") { exclude module: 'httpclient' exclude module: 'entity' exclude module: 'httpcore' }
 //    implementation("oauth.signpost:signpost-commonshttp4:${ext.signpostVersion}") { exclude module: "httpcore" exclude module: "commons-codec" exclude module: "httpclient" }
 //    implementation "com.crashlytics.sdk.android:crashlytics:${ext.crashliticsVersion}"
 //    implementation "com.crashlytics.sdk.android:crashlytics-ndk:${ext.crashliticsNdkVersion}"
-    implementation 'org.jetbrains:annotations:15.0'
-
-    // Dependencies for development
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakCanaryVersion}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakCanaryVersion}"
 
     // Dependencies for local unit tests
-//    testImplementation "com.android.support:support-annotations:${ext.supportVersion}"
-//    testImplementation "org.powermock:powermock-api-mockito:${ext.powermockVersion}"
-//    testImplementation "org.powermock:powermock-module-junit4:${ext.powermockVersion}"
-//    testImplementation "org.robolectric:robolectric:${ext.robolectricVersion}"
     testImplementation "junit:junit:${ext.jUnitVersion}"
-//    testImplementation "org.mockito:mockito-all:${ext.mockitoVersion}"
-//    testImplementation "org.hamcrest:hamcrest-all:${ext.hamcrestVersion}"
-//    testImplementation "android.arch.core:core-testing:${ext.lifecycleExtVersion}"
-//
-//    // Android Testing Support Library's runner and rules
+
+    // Dependencies for Android unit tests
     androidTestImplementation "com.android.support.test:runner:${ext.runnerVersion}"
     androidTestImplementation "com.android.support.test:rules:${ext.rulesVersion}"
-//
-//    // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:${ext.jUnitVersion}"
 //    androidTestImplementation "org.mockito:mockito-all:${ext.mockitoVersion}"
 //    androidTestImplementation "com.google.dexmaker:dexmaker:${ext.dexmakerVersion}"
@@ -128,7 +119,11 @@ dependencies {
 //    androidTestImplementation "com.android.support:recyclerview-v7:${ext.supportVersion}"
 //    androidTestImplementation "com.android.support:appcompat-v7:${ext.supportVersion}"
 //    androidTestImplementation "com.android.support:design:${ext.supportVersion}"
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+//    testImplementation "com.android.support:support-annotations:${ext.supportVersion}"
+//    testImplementation "org.powermock:powermock-api-mockito:${ext.powermockVersion}"
+//    testImplementation "org.powermock:powermock-module-junit4:${ext.powermockVersion}"
+//    testImplementation "org.robolectric:robolectric:${ext.robolectricVersion}"
+//    testImplementation "org.mockito:mockito-all:${ext.mockitoVersion}"
+//    testImplementation "org.hamcrest:hamcrest-all:${ext.hamcrestVersion}"
+//    testImplementation "android.arch.core:core-testing:${ext.lifecycleExtVersion}"
 }
